@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Test" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\SU\\Desktop\\C\#-test\\myfirstAzureWebApp\\myfirstAzureWebApp\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\SU\\Desktop\\C\#-test\\myfirstAzureWebApp\\myfirstAzureWebApp\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>
