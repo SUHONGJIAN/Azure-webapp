@@ -1,0 +1,278 @@
+﻿
+@{
+    ViewBag.Title = "Display";
+}
+
+<div class="jumbotron">
+    <h1>实时时间</h1>
+    <p class="lead">Intro: 实时显示UTC,US和China的当地时间</p>
+    <p><a href="https://24timezones.com/shi_jie2.php" class="btn btn-primary btn-lg">世界时间 &raquo;</a></p>
+</div>
+
+@*<div class="row">
+    <div class="col-md-16">
+            <p>
+                访问时间：@DateTime.Now.ToLocalTime().ToString()
+            </p>
+    </div>
+    <div id="localtime"></div>
+        <script type="text/javascript">
+        function showLocale(objD)
+        {
+          var str,colorhead,colorfoot;
+          var yy = objD.getYear();
+           if(yy<1900) yy = yy+1900;
+          var MM = objD.getMonth()+1;
+           if(MM<10) MM = '0' + MM;
+          var dd = objD.getDate();
+           if(dd<10) dd = '0' + dd;
+          var hh = objD.getHours();
+           if(hh<10) hh = '0' + hh;
+          var mm = objD.getMinutes();
+           if(mm<10) mm = '0' + mm;
+          var ss = objD.getSeconds();
+           if(ss<10) ss = '0' + ss;
+          var ww = objD.getDay();
+           if ( ww==0 ) colorhead="<font color=\"#FF0000\">";
+           if ( ww > 0 && ww < 6 ) colorhead="<font color=\"#373737\">";
+           if ( ww==6 ) colorhead="<font color=\"#008000\">";
+           if (ww==0) ww="星期日";
+           if (ww==1) ww="星期一";
+           if (ww==2) ww="星期二";
+           if (ww==3) ww="星期三";
+           if (ww==4) ww="星期四";
+           if (ww==5) ww="星期五";
+           if (ww==6) ww="星期六";
+           colorfoot="</font>"
+            str = colorhead + "当地时间： " + yy + "年" + MM + "月" + dd + "日" + hh + ":" + mm + ":" + ss + " " + ww + colorfoot;
+           return str;
+        }
+        function tick()
+        {
+          var today;
+          today = new Date();
+          document.getElementById("localtime").innerHTML = showLocale(today);
+          window.setTimeout("tick()", 1000);
+        }
+        tick();
+        </script>
+    <div class="col-md-16">
+        <script type="text/javascript">
+            document.write("Local time：<span id=labTime width='118px' height='11px' Font-Size='9pt'></span>") //输出显示日期的容器
+            //每1000毫秒(即1秒) 执行一次本段代码
+            //setInterval("labTime.innerText=new Date().toLocaleString()",1000)
+            setInterval("labTime.innerText=new Date()", 1000)
+        </script>
+    </div> 
+</div>
+<br />*@
+@*<body>
+    <div id="su"></div>
+    <script type="text/javascript">
+        document.write("<span id=labTime width='118px' height='11px' Font-Size='9pt'></span>") //输出显示日期的容器
+        //每1000毫秒(即1秒) 执行一次本段代码
+        //setInterval("labTime.innerText=new Date().toLocaleString()",1000)
+        setInterval("labTime.innerText=new Date()", 1000)
+    </script>
+</body>*@
+
+@*<body>
+    <div id="localtime"></div>
+    <script type="text/javascript">
+        function showLocale(objD)
+        {
+          var str,colorhead,colorfoot;
+          var yy = objD.getYear();
+           if(yy<1900) yy = yy+1900;
+          var MM = objD.getMonth()+1;
+           if(MM<10) MM = '0' + MM;
+          var dd = objD.getDate();
+           if(dd<10) dd = '0' + dd;
+          var hh = objD.getHours();
+           if(hh<10) hh = '0' + hh;
+          var mm = objD.getMinutes();
+           if(mm<10) mm = '0' + mm;
+          var ss = objD.getSeconds();
+           if(ss<10) ss = '0' + ss;
+          var ww = objD.getDay();
+           if ( ww==0 ) colorhead="<font color=\"#FF0000\">";
+           if ( ww > 0 && ww < 6 ) colorhead="<font color=\"#373737\">";
+           if ( ww==6 ) colorhead="<font color=\"#008000\">";
+           if (ww==0) ww="星期日";
+           if (ww==1) ww="星期一";
+           if (ww==2) ww="星期二";
+           if (ww==3) ww="星期三";
+           if (ww==4) ww="星期四";
+           if (ww==5) ww="星期五";
+           if (ww==6) ww="星期六";
+           colorfoot="</font>"
+            str = colorhead + yy + "年" + MM + "月" + dd + "日" + hh + ":" + mm + ":" + ss + " " + ww + colorfoot;
+           return str;
+        }
+        function tick()
+        {
+          var today;
+          today = new Date();
+          document.getElementById("localtime").innerHTML = showLocale(today);
+          window.setTimeout("tick()", 1000);
+        }
+        tick();
+    </script>
+</body>*@
+
+
+@*<body>
+    <div id="ddate"></div>
+    <div id="ddate2"></div>
+    <script language="javascript">
+        var ddate=document.getElementById("ddate");
+        var ddate2=document.getElementById("ddate2");
+
+        function updatedate(){
+        var dd1=new Date();
+        dd1.setMinutes(dd1.getMinutes()+dd1.getTimezoneOffset()-300); //取当地时间加上和格林威治的时差减要求地区和格林的时差分钟，这里是-300，代表美国东部纽约和格林的时差
+        //先设置setMinutes再取getHours才有效
+        var tmin=dd1.getHours();
+        if(tmin>=0 && tmin<6){
+           tmin='凌晨'+tmin;
+        }
+        if(tmin>=6 && tmin<=12){
+           tmin='早上'+tmin;
+        }
+        if(tmin>12 && tmin<=18){
+           tmin='下午'+tmin;
+        }
+        if(tmin>18 && tmin<=24){
+           tmin='晚上'+tmin;
+        }
+
+        ddate.innerHTML='美国东部时间:'+dd1.getFullYear()+"年"+(dd1.getMonth()+1)+"月"+dd1.getDate()+"日"+tmin+"点"+dd1.getMinutes()+"分"+dd1.getSeconds()+"秒";
+        var dd2=new Date();
+            dd2.setMinutes(dd2.getMinutes()+dd2.getTimezoneOffset()+13*60-300);//纽约和中国相差13个小时，夏天是12个小时所以这里加上13*60 夏天改为12*60
+        ddate2.innerHTML='北京时间'+ dd2.getFullYear()+"年"+(dd2.getMonth()+1)+"月"+dd2.getDate()+"日"+dd2.getHours()+"点"+dd2.getMinutes()+"分"+dd2.getSeconds()+"秒";
+         var t=setTimeout("updatedate()",1000);
+        }
+        updatedate();
+    </script>
+</body>*@
+
+<p style="text-align:center">
+    <img src="https://hongjianstorage.blob.core.chinacloudapi.cn/testcontainer/static image.png" alt="static image" align="middle">
+</p>
+
+<table border="1", align="center">
+    <caption>实时时钟</caption>
+    <tr valign ="middle">
+        <th style="text-align:center;">UTC/GMT时间</th>
+        <th style="text-align:center;">中国时间（北京）</th>
+        <th style="text-align:center;">美国时间（东部）</th>
+    </tr>
+    <tr>
+        <td width=400px, align="center" , id="china"></td>
+        <td width=400px, align="center" , id="usa"></td>
+        <td width=400px, align="center" , id="utc"></td>
+            @*<script type="text/javascript">
+            document.write("<span id=ChinaTime width='118px' height='11px' Font-Size='9pt'></span>") //输出显示日期的容器
+            //每1000毫秒(即1秒) 执行一次本段代码
+            setInterval("ChinaTime.innerText=new Date", 1000)
+            </script>*@
+        @*<td width = 600px, align="center", id="ddate2"></td>*@
+    </tr>
+</table>
+<script language="javascript">
+    var ddate=document.getElementById("utc");
+    var ddate2 = document.getElementById("usa");
+    var ddate3 = document.getElementById("china");
+
+    function updatedate(){
+    var dd1=new Date();
+    dd1.setMinutes(dd1.getMinutes()+dd1.getTimezoneOffset()-300); //取当地时间加上和格林威治的时差减要求地区和格林的时差分钟，这里是-300，代表美国东部纽约和格林的时差
+    //先设置setMinutes再取getHours才有效
+    var tmin=dd1.getHours();
+    if(tmin>=0 && tmin<6){
+        tmin='凌晨'+tmin;
+    }
+    if(tmin>=6 && tmin<=12){
+        tmin='早上'+tmin;
+    }
+    if(tmin>12 && tmin<=18){
+        tmin='下午'+tmin;
+    }
+    if(tmin>18 && tmin<=24){
+        tmin='晚上'+tmin;
+    }
+
+    ddate.innerHTML=dd1.getFullYear()+"年"+(dd1.getMonth()+1)+"月"+dd1.getDate()+"日"+tmin+"点"+dd1.getMinutes()+"分"+dd1.getSeconds()+"秒";
+
+    var dd2 = new Date();
+        dd2.setMinutes(dd2.getMinutes()+dd2.getTimezoneOffset()+13*60-300);//纽约和中国相差13个小时，夏天是12个小时所以这里加上13*60 夏天改为12*60
+    ddate2.innerHTML=dd2.getFullYear()+"年"+(dd2.getMonth()+1)+"月"+dd2.getDate()+"日"+dd2.getHours()+"点"+dd2.getMinutes()+"分"+dd2.getSeconds()+"秒";
+    var t = setTimeout("updatedate()", 1000);
+
+    var dd3 = new Date();
+    dd3.setMinutes(dd3.getMinutes() + dd3.getTimezoneOffset());//纽约和中国相差13个小时，夏天是12个小时所以这里加上13*60 夏天改为12*60
+    ddate3.innerHTML = dd3.getFullYear() + "年" + (dd3.getMonth() + 1) + "月" + dd3.getDate() + "日" + dd3.getHours() + "点" + dd3.getMinutes() + "分" + dd3.getSeconds() + "秒";
+    var t = setTimeout("updatedate()", 1000);
+    }
+    updatedate();
+</script>
+<br />
+<br />
+<br />
+
+<p style="text-align:right">
+            访问时间：@DateTime.Now.ToLocalTime().ToString()
+</p>
+
+<p id="localtime" style="text-align:right">
+    <script type="text/javascript">
+        function showLocale(objD)
+        {
+          var str,colorhead,colorfoot;
+          var yy = objD.getYear();
+           if(yy<1900) yy = yy+1900;
+          var MM = objD.getMonth()+1;
+           if(MM<10) MM = '0' + MM;
+          var dd = objD.getDate();
+           if(dd<10) dd = '0' + dd;
+          var hh = objD.getHours();
+           if(hh<10) hh = '0' + hh;
+          var mm = objD.getMinutes();
+           if(mm<10) mm = '0' + mm;
+          var ss = objD.getSeconds();
+           if(ss<10) ss = '0' + ss;
+          var ww = objD.getDay();
+           if ( ww==0 ) colorhead="<font color=\"#FF0000\">";
+           if ( ww > 0 && ww < 6 ) colorhead="<font color=\"#373737\">";
+           if ( ww==6 ) colorhead="<font color=\"#008000\">";
+           if (ww==0) ww="星期日";
+           if (ww==1) ww="星期一";
+           if (ww==2) ww="星期二";
+           if (ww==3) ww="星期三";
+           if (ww==4) ww="星期四";
+           if (ww==5) ww="星期五";
+           if (ww==6) ww="星期六";
+           colorfoot="</font>"
+            str = colorhead + "当地时间： " + yy + "年" + MM + "月" + dd + "日" + hh + ":" + mm + ":" + ss + " " + ww + colorfoot;
+           return str;
+        }
+        function tick()
+        {
+          var today;
+          today = new Date();
+          document.getElementById("localtime").innerHTML = showLocale(today);
+          window.setTimeout("tick()", 1000);
+        }
+        tick();
+    </script>
+</p>
+
+<p style="text-align:right">
+    <script type="text/javascript">
+        document.write("Local time：<span id=labTime width='118px' height='11px' Font-Size='9pt'></span>") //输出显示日期的容器
+        //每1000毫秒(即1秒) 执行一次本段代码
+        //setInterval("labTime.innerText=new Date().toLocaleString()",1000)
+        setInterval("labTime.innerText=new Date()", 1000)
+    </script>
+</p>
+    
